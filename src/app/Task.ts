@@ -1,0 +1,11 @@
+export interface Task {
+  id?: number;
+  text: string;
+  day: string;
+  reminder: boolean;
+}
+
+// id: 1,
+//     text: 'Doctors Appointment',
+//     day: 'May 5th at 2:30pm',
+//     reminder: true,

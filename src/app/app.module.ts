@@ -1,16 +1,56 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { Router, RouterModule, Routes } from '@angular/router';
+import { AuthguardServiceService } from './services/authguard-service.service';
 
 import { AppComponent } from './app.component';
+import { HeaderComponent } from './components/header/header.component';
+import { ButtonComponent } from './components/button/button.component';
+import { BooksComponent } from './components/books/books.component';
+import { BookItemComponent } from './components/book-item/book-item.component';
+import { AddBookComponent } from './components/add-book/add-book.component';
+import { LoginComponent } from './components/login/login.component';
+import { AuthenticationGuard } from './authentication.guard';
+import { BookDetailsComponent } from './components/book-details/book-details.component';
+
+const appRoutes: Routes = [
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: 'login', component: LoginComponent },
+  {
+    path: 'books',
+    component: BooksComponent,
+    canActivate: [AuthenticationGuard],
+  },
+  {
+    path: 'books/:id',
+    component: BookDetailsComponent,
+  },
+  // { path: '**', redirectTo: 'login', pathMatch: 'full' },
+];
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HeaderComponent,
+    ButtonComponent,
+    BooksComponent,
+    BookItemComponent,
+    AddBookComponent,
+    LoginComponent,
+    BookDetailsComponent,
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    FontAwesomeModule,
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
+    RouterModule.forRoot(appRoutes, { enableTracing: false }),
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [AuthguardServiceService],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

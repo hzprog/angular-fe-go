@@ -1,0 +1,36 @@
+<header>
+  <h1>Log in</h1>
+</header>
+
+<form novalidate [formGroup]="form" class="add-form">
+  <div class="form-control">
+    <label for="username">Username : </label>
+    <input
+      type="text"
+      name="username"
+      formControlName="username"
+      id="username"
+      placeholder="Enter your password"
+    />
+  </div>
+  <div class="form-control">
+    <label for="passowrd">Password : </label>
+    <input
+      type="password"
+      name="password"
+      formControlName="password"
+      id="password"
+      placeholder="Enter your password"
+    />
+  </div>
+
+  <button
+    type="submit"
+    (click)="onSubmit()"
+    [ngStyle]="{ 'background-color': 'green' }"
+    value="Save Book"
+    class="btn btn-block"
+  >
+    Connect
+  </button>
+</form>

@@ -1,0 +1,18 @@
+<div class="task">
+  <h3>
+    <div><strong>Title :</strong> {{ book.title }}</div>
+    <div class="actions">
+      <fa-icon
+        [ngStyle]="{ color: 'red' }"
+        [icon]="faTimes"
+        (click)="onDelete(book)"
+      ></fa-icon>
+      <!-- <fa-icon [icon]="faEdit" (click)="onDelete(book)" ()></fa-icon> -->
+      <a routerLink="{{ book.ID }}"><fa-icon [icon]="faEdit"></fa-icon></a>
+    </div>
+  </h3>
+  <p>
+    <strong>Author :</strong> {{ book.author }} | <strong>Isbn :</strong>
+    {{ book.isbn }}
+  </p>
+</div>

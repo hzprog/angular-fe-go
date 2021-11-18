@@ -1,0 +1,53 @@
+<div *ngIf="showAddBook" class="form-container">
+  <form novalidate [formGroup]="form" class="add-form">
+    <div class="form-control">
+      <label for="title">Book</label>
+      <input
+        type="text"
+        name="title"
+        formControlName="title"
+        id="title"
+        placeholder="Add book"
+      />
+    </div>
+    <div class="form-control">
+      <label for="isbn">Isbn</label>
+      <input
+        type="text"
+        name="isbn"
+        formControlName="isbn"
+        id="isbn"
+        placeholder="Add Isbn"
+      />
+    </div>
+    <div class="form-control">
+      <label for="author">Author</label>
+      <input
+        type="text"
+        name="author"
+        formControlName="author"
+        id="author"
+        placeholder="Add Author name"
+      />
+    </div>
+    <div class="form-control">
+      <label for="file">Image of the book</label>
+      <input
+        type="file"
+        id="file"
+        name="file"
+        (change)="handleFileInput($event)"
+      />
+    </div>
+    <button
+      type="submit"
+      [ngStyle]="{ 'background-color': 'green' }"
+      [disabled]="!form.valid"
+      (click)="onSubmit()"
+      value="Save Book"
+      class="btn btn-block"
+    >
+      SAVE BOOK
+    </button>
+  </form>
+</div>
