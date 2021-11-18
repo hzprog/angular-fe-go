@@ -1,6 +1,9 @@
 import { Component, OnInit, Output } from '@angular/core';
 import { UiService } from 'src/app/services/ui.service';
 import { Subscription } from 'rxjs';
+import jwt_decode from 'jwt-decode';
+import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
+import { AuthguardServiceService } from 'src/app/services/authguard-service.service';
 
 @Component({
   selector: 'app-header',
@@ -11,15 +14,29 @@ export class HeaderComponent implements OnInit {
   title: string = 'List of books';
   showAddBook: boolean;
   subscription: Subscription;
-  constructor(private uiService: UiService) {
+  userConnected: string = '';
+  faSignOOutAlt = faSignOutAlt;
+
+  constructor(
+    private uiService: UiService,
+    private authGuard: AuthguardServiceService
+  ) {
     this.subscription = this.uiService
       .onToggle()
       .subscribe((value) => (this.showAddBook = value));
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    let token: any = localStorage.getItem('token');
+    let decodedToken: any = jwt_decode(token);
+    this.userConnected = decodedToken.client;
+  }
 
   toggleAddTask() {
     this.uiService.toggleAddTask();
+  }
+
+  signOut() {
+    this.authGuard.signOut();
   }
 }

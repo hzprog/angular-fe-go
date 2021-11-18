@@ -1,6 +1,7 @@
 <div class="task">
   <h3>
     <div><strong>Title :</strong> {{ book.title }}</div>
+
     <div class="actions">
       <fa-icon
         [ngStyle]="{ color: 'red' }"
@@ -8,11 +9,20 @@
         (click)="onDelete(book)"
       ></fa-icon>
       <!-- <fa-icon [icon]="faEdit" (click)="onDelete(book)" ()></fa-icon> -->
-      <a routerLink="{{ book.ID }}"><fa-icon [icon]="faEdit"></fa-icon></a>
+      <!-- <a
+        routerLink="{{ book.ID }}"
+        class="linkrouter"
+        [ngStyle]="{ color: '#444' }"
+        ><fa-icon [icon]="faEdit"></fa-icon
+      ></a> -->
     </div>
   </h3>
+
   <p>
+    <br />
     <strong>Author :</strong> {{ book.author }} | <strong>Isbn :</strong>
-    {{ book.isbn }}
+    {{ book.isbn }} |
+    <a href="http://localhost:8000/{{ book.image }}">View Image </a>
   </p>
+  <p></p>
 </div>

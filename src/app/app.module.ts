@@ -15,10 +15,15 @@ import { AddBookComponent } from './components/add-book/add-book.component';
 import { LoginComponent } from './components/login/login.component';
 import { AuthenticationGuard } from './authentication.guard';
 import { BookDetailsComponent } from './components/book-details/book-details.component';
+import { GuardGuard } from './guard.guard';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
-  { path: 'login', component: LoginComponent },
+  {
+    path: 'login',
+    component: LoginComponent,
+    canActivate: [GuardGuard],
+  },
   {
     path: 'books',
     component: BooksComponent,
@@ -27,8 +32,9 @@ const appRoutes: Routes = [
   {
     path: 'books/:id',
     component: BookDetailsComponent,
+    canActivate: [AuthenticationGuard],
   },
-  // { path: '**', redirectTo: 'login', pathMatch: 'full' },
+  { path: '**', redirectTo: 'login', pathMatch: 'full' },
 ];
 
 @NgModule({

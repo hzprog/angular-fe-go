@@ -14,6 +14,7 @@ export class BookItemComponent implements OnInit {
 
   faTimes = faTimes;
   faEdit = faEdit;
+
   constructor() {}
 
   ngOnInit(): void {}

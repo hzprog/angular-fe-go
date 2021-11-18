@@ -1,8 +1,20 @@
 <header>
-  <h1>{{ title }}</h1>
-  <app-button
-    color="{{ showAddBook ? 'red' : 'green' }}"
-    text="{{ showAddBook ? 'Close' : 'Add book' }}"
-    (btnClick)="toggleAddTask()"
-  ></app-button>
+  <div>
+    <h3>{{ userConnected }}</h3>
+    <fa-icon
+      [icon]="faSignOOutAlt"
+      transform="grow-12"
+      [ngStyle]="{ color: 'red' }"
+      (click)="signOut()"
+    ></fa-icon>
+  </div>
+  <div class="separator"></div>
+  <div>
+    <h2>{{ title }}</h2>
+    <app-button
+      color="{{ showAddBook ? 'red' : 'green' }}"
+      text="{{ showAddBook ? 'Close' : 'Add book' }}"
+      (btnClick)="toggleAddTask()"
+    ></app-button>
+  </div>
 </header>

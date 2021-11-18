@@ -5,19 +5,18 @@ import {
   RouterStateSnapshot,
   UrlTree,
 } from '@angular/router';
-import { AuthguardServiceService } from './services/authguard-service.service';
 import { Router } from '@angular/router';
+import { AuthguardServiceService } from './services/authguard-service.service';
 import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
-export class AuthenticationGuard implements CanActivate {
+export class GuardGuard implements CanActivate {
   constructor(
     private Authguardservice: AuthguardServiceService,
     private router: Router
   ) {}
-
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
@@ -27,9 +26,7 @@ export class AuthenticationGuard implements CanActivate {
     | boolean
     | UrlTree {
     return (
-      this.Authguardservice.getToken() || this.router.navigateByUrl('/login')
+      !this.Authguardservice.getToken() || this.router.navigateByUrl('/books')
     );
   }
-
-  // canActivate(): boolean {}
 }

@@ -10,6 +10,7 @@ import { Book } from '../Book';
 })
 export class BookService {
   private apiUrl = 'http://localhost:8000/api/books';
+  private apiRoute = 'http://localhost:8000/api/book/';
 
   constructor(
     private http: HttpClient,
@@ -40,5 +41,9 @@ export class BookService {
 
   addBook(bookFromdata: FormData): Observable<Book> {
     return this.http.post<any>(this.apiUrl, bookFromdata, this.httpOptionsPost);
+  }
+  getBook(bookId: any): Observable<Book> {
+    const url = `${this.apiRoute + bookId}`;
+    return this.http.get<any>(url, this.httpOptionsPost);
   }
 }

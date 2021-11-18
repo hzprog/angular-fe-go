@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
 
     this.loginServices.login(loginCredentials).subscribe(
       (result) => {
-        console.log('working');
+        // console.log('working');
         localStorage.setItem('token', result.token);
         this.router.navigate(['/books']);
       },

@@ -24,3 +24,7 @@
   align-items: center;
   justify-content: space-evenly;
 }
+
+.linkrouter :active {
+  text-decoration: none;
+}
