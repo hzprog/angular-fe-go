@@ -10,11 +10,11 @@
       name="username"
       formControlName="username"
       id="username"
-      placeholder="Enter your password"
+      placeholder="Enter your username"
     />
   </div>
   <div class="form-control">
-    <label for="passowrd">Password : </label>
+    <label for="password">Password : </label>
     <input
       type="password"
       name="password"
@@ -23,11 +23,10 @@
       placeholder="Enter your password"
     />
   </div>
-
   <button
     type="submit"
     (click)="onSubmit()"
-    [ngStyle]="{ 'background-color': 'green' }"
+    style="background-color: green "
     value="Save Book"
     class="btn btn-block"
   >
