@@ -1,0 +1,30 @@
+input{
+  border: 1px #aaa solid;
+}
+
+input:focus {
+  outline: #0074CC 1px solid;
+  border: none;
+}
+
+label {
+  color: #444;
+}
+
+.or {
+  text-align: center;
+  font-weight: bold;
+  color: #444;
+}
+
+.signup {
+  background-color: white;
+  color: #0074CC;
+  border: #0074CC 1px solid;
+  transition: 0.3s all ease-in-out;
+}
+
+.signup:hover {
+  background-color: #0074CC;
+  color: white;
+}

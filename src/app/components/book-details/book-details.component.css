@@ -1,0 +1,23 @@
+.book-details-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+.book-details-image-container {
+  width: 100%;
+  height: 400px;
+  object-fit: contain;
+}
+
+/*.book-details-infos-container  {*/
+/*  display: grid;*/
+/*  grid-template-columns: auto auto;*/
+/*  grid-column-gap: 50px;*/
+/*}*/
+
+.book-details-infos-container div {
+  display: flex;
+  justify-content: space-between;
+  gap: 5rem;
+}

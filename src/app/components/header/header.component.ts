@@ -1,4 +1,4 @@
-import { Component, OnInit, Output } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { UiService } from 'src/app/services/ui.service';
 import { Subscription } from 'rxjs';
 import jwt_decode from 'jwt-decode';
@@ -11,7 +11,8 @@ import { AuthguardServiceService } from 'src/app/services/authguard-service.serv
   styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent implements OnInit {
-  title: string = 'List of books';
+  @Input() title: string = 'List of books';
+  @Input() textOfButton: string = 'Add book';
   showAddBook: boolean;
   subscription: Subscription;
   userConnected: string = '';

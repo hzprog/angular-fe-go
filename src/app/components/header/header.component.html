@@ -1,6 +1,6 @@
 <header>
   <div>
-    <h3>{{ userConnected }}</h3>
+    <div><b>Connected as : {{ userConnected }}</b></div>
     <fa-icon
       [icon]="faSignOOutAlt"
       transform="grow-12"
@@ -13,7 +13,7 @@
     <h2>{{ title }}</h2>
     <app-button
       color="{{ showAddBook ? 'red' : 'green' }}"
-      text="{{ showAddBook ? 'Close' : 'Add book' }}"
+      text="{{ showAddBook ? 'Close' : textOfButton }}"
       (btnClick)="toggleAddTask()"
     ></app-button>
   </div>

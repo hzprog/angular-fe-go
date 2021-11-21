@@ -1,28 +1,27 @@
-<div class="task">
-  <h3>
-    <div><strong>Title :</strong> {{ book.title }}</div>
+<div class="book">
+  <!--      &lt;!&ndash; <fa-icon [icon]="faEdit" (click)="onDelete(book)" ()></fa-icon> &ndash;&gt;-->
 
-    <div class="actions">
-      <fa-icon
-        [ngStyle]="{ color: 'red' }"
-        [icon]="faTimes"
-        (click)="onDelete(book)"
-      ></fa-icon>
-      <!-- <fa-icon [icon]="faEdit" (click)="onDelete(book)" ()></fa-icon> -->
-      <!-- <a
-        routerLink="{{ book.ID }}"
-        class="linkrouter"
-        [ngStyle]="{ color: '#444' }"
-        ><fa-icon [icon]="faEdit"></fa-icon
-      ></a> -->
+
+  <div class="card-item">
+    <div class="image-container">
+      <a href="http://localhost:8000/{{ book.image }}" target="_blank">
+        <img src="http://localhost:8000/{{ book.image }}" alt="" width="70px" height="100px">
+      </a>
     </div>
-  </h3>
-
-  <p>
-    <br />
-    <strong>Author :</strong> {{ book.author }} | <strong>Isbn :</strong>
-    {{ book.isbn }} |
-    <a href="http://localhost:8000/{{ book.image }}" target="_blank">Image </a>
-  </p>
-  <p></p>
+    <div class="item-infos">
+      <div class="item-infos-text">
+        <div><b>Title : </b>{{book.title}}</div>
+        <div><b>ISBN : </b>{{book.isbn}}</div>
+        <div><b>Author : </b>{{book.author}}</div>
+      </div>
+      <div class="item-infos-actions">
+        <fa-icon
+          [ngStyle]="{ color: 'red' }"
+          [icon]="faTimes"
+          (click)="onDelete(book)"
+        ></fa-icon>
+        <fa-icon [icon]="faEdit" routerLink="{{book.ID}}"></fa-icon>
+      </div>
+    </div>
+  </div>
 </div>

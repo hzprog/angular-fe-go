@@ -6,11 +6,17 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   providedIn: 'root',
 })
 export class LoginService {
-  private apiUrl = 'http://localhost:8000/api/signin';
+  private apiUrl = 'http://localhost:8000/api';
 
   constructor(private http: HttpClient) {}
 
-  login(loginFromdata: any): Observable<any> {
-    return this.http.post<any>(this.apiUrl, loginFromdata);
+  login(loginFromData: any): Observable<any> {
+    const url = `${this.apiUrl}/login`;
+    return this.http.post<any>(url, loginFromData);
+  }
+
+  register(registerFromData: any): Observable<any> {
+    const url = `${this.apiUrl}/signup`;
+    return this.http.post<any>(url, registerFromData);
   }
 }

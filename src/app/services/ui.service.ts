@@ -6,6 +6,7 @@ import { Observable, observable, Subject } from 'rxjs';
 })
 export class UiService {
   private showAddBook: boolean = false;
+  private showUpdateBook: boolean = false;
 
   private subject = new Subject<any>();
 
@@ -14,6 +15,10 @@ export class UiService {
   toggleAddTask(): void {
     this.showAddBook = !this.showAddBook;
     this.subject.next(this.showAddBook);
+  }
+  toggleUpdateTask(): void {
+    this.showUpdateBook = !this.showUpdateBook;
+    this.subject.next(this.showUpdateBook);
   }
 
   onToggle(): Observable<any> {

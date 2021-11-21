@@ -19,6 +19,12 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {}
 
+  onSignup() {
+    this.router.navigateByUrl('/signup').catch((err) => {
+      console.error(err);
+    });
+  }
+
   onSubmit() {
     const loginCredentials = {
       username: this.form.get('username')?.value,
@@ -27,9 +33,10 @@ export class LoginComponent implements OnInit {
 
     this.loginServices.login(loginCredentials).subscribe(
       (result) => {
-        // console.log('working');
         localStorage.setItem('token', result.token);
-        this.router.navigate(['/books']);
+        this.router.navigateByUrl('/books').catch((err) => {
+          console.error(err);
+        });
       },
       (err: HttpErrorResponse) => {
         alert(err.error);

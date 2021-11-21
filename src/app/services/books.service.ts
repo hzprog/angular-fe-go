@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AuthguardServiceService } from './authguard-service.service';
 
 import { Book } from '../Book';
+import { Form } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root',
@@ -39,9 +40,15 @@ export class BookService {
     return this.http.delete<string>(url, this.httpOptions);
   }
 
-  addBook(bookFromdata: FormData): Observable<Book> {
-    return this.http.post<any>(this.apiUrl, bookFromdata, this.httpOptionsPost);
+  addBook(bookFromData: FormData): Observable<Book> {
+    return this.http.post<any>(this.apiUrl, bookFromData, this.httpOptionsPost);
   }
+
+  updateBook(bookData: any, id: any): Observable<any> {
+    const url = `${this.apiUrl}/${id}`;
+    return this.http.put<any>(url, bookData, this.httpOptionsPost);
+  }
+
   getBook(bookId: any): Observable<Book> {
     const url = `${this.apiRoute + bookId}`;
     return this.http.get<any>(url, this.httpOptionsPost);

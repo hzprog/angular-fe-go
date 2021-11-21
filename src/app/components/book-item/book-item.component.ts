@@ -2,6 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Book } from '../../Book';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { faEdit } from '@fortawesome/free-solid-svg-icons';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-book-item',
@@ -15,11 +16,17 @@ export class BookItemComponent implements OnInit {
   faTimes = faTimes;
   faEdit = faEdit;
 
-  constructor() {}
+  constructor(private router: Router) {}
 
   ngOnInit(): void {}
 
   onDelete(book: Book) {
     this.onDeleteBook.emit(book);
+  }
+
+  onEdit(id: any) {
+    this.router.navigateByUrl(`books/${Number(id)}`).catch((err) => {
+      console.error(err);
+    });
   }
 }
