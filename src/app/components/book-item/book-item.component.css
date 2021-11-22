@@ -58,3 +58,7 @@
   align-items: flex-start;
   gap: 0.7rem;
 }
+
+mat-icon {
+  cursor: pointer;
+}

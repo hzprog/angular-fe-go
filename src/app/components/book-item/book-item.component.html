@@ -1,7 +1,4 @@
 <div class="book">
-  <!--      &lt;!&ndash; <fa-icon [icon]="faEdit" (click)="onDelete(book)" ()></fa-icon> &ndash;&gt;-->
-
-
   <div class="card-item">
     <div class="image-container">
       <a href="http://localhost:8000/{{ book.image }}" target="_blank">
@@ -15,14 +12,10 @@
         <div><b>Author : </b>{{book.author}}</div>
       </div>
       <div class="item-infos-actions">
-          <fa-icon
-            class="item-infos-actions-icons"
-            [ngStyle]="{ color: 'red' }"
-            [icon]="faTimes"
-            (click)="onDelete(book)"
-          ></fa-icon>
-        <fa-icon class="item-infos-actions-icons" [icon]="faEdit" routerLink="{{book.ID}}"></fa-icon>
+        <mat-icon routerLink="{{book.ID}}">edit</mat-icon>
+        <mat-icon (click)="onDelete(book)" color="warn">delete</mat-icon>
       </div>
     </div>
   </div>
 </div>
+

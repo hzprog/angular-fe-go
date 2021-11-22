@@ -10,6 +10,7 @@ import { LoginService } from '../../services/login.service';
   styleUrls: ['./register.component.css'],
 })
 export class RegisterComponent implements OnInit {
+  hide: boolean = true;
   form: FormGroup = new FormGroup({
     username: new FormControl('', Validators.required),
     password: new FormControl('', Validators.required),

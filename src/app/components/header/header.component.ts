@@ -13,7 +13,9 @@ import { AuthguardServiceService } from 'src/app/services/authguard-service.serv
 export class HeaderComponent implements OnInit {
   @Input() title: string = 'List of books';
   @Input() textOfButton: string = 'Add book';
-  showAddBook: boolean;
+  @Input() choiceOfToggle: 'update' | 'add';
+
+  show: boolean;
   subscription: Subscription;
   userConnected: string = '';
   faSignOOutAlt = faSignOutAlt;
@@ -22,9 +24,14 @@ export class HeaderComponent implements OnInit {
     private uiService: UiService,
     private authGuard: AuthguardServiceService
   ) {
-    this.subscription = this.uiService
-      .onToggle()
-      .subscribe((value) => (this.showAddBook = value));
+    if (this.choiceOfToggle === 'add')
+      this.subscription = this.uiService
+        .onToggleAdd()
+        .subscribe((value) => (this.show = value));
+    else if (this.choiceOfToggle === 'update')
+      this.subscription = this.uiService
+        .onToggleUpdate()
+        .subscribe((value) => (this.show = value));
   }
 
   ngOnInit(): void {
@@ -34,7 +41,13 @@ export class HeaderComponent implements OnInit {
   }
 
   toggle() {
-    this.uiService.toggleAddTask();
+    if (this.choiceOfToggle === 'add') {
+      this.uiService.toggleAddTask();
+      this.show = !this.show;
+    } else {
+      this.uiService.toggleUpdateTask();
+      this.show = !this.show;
+    }
   }
 
   signOut() {

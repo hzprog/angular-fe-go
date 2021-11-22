@@ -1,10 +1,22 @@
-input{
-  border: 1px #aaa solid;
+/*input{*/
+/*  border: 1px #aaa solid;*/
+/*}*/
+
+/*input:focus {*/
+/*  outline: #0074CC 1px solid;*/
+/*  border: none;*/
+/*}*/
+.login-form{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-input:focus {
-  outline: #0074CC 1px solid;
-  border: none;
+
+mat-form-field {
+  width: 80%;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 label {
@@ -27,4 +39,14 @@ label {
 .signup:hover {
   background-color: #0074CC;
   color: white;
+}
+
+.example-container .mat-form-field + .mat-form-field {
+  margin-left: 8px;
+}
+
+form button {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 80%;
 }

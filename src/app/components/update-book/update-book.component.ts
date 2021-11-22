@@ -25,7 +25,7 @@ export class UpdateBookComponent implements OnInit {
 
   ngOnInit(): void {
     this.uiService
-      .onToggle()
+      .onToggleUpdate()
       .subscribe((value) => (this.showUpdateBook = value));
 
     this.form = new FormGroup({
@@ -41,8 +41,11 @@ export class UpdateBookComponent implements OnInit {
       isbn: this.form.get('isbn')?.value,
       author: this.form.get('author')?.value,
     };
+
     this.bookServices.updateBook(book, this.book.ID).subscribe((book) => {
       this.onUpdate.emit(book);
     });
+
+    this.uiService.toggleUpdateTask();
   }
 }

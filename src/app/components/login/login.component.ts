@@ -10,10 +10,13 @@ import { LoginService } from 'src/app/services/login.service';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
+  hide: boolean = true;
   form: FormGroup = new FormGroup({
     username: new FormControl('', Validators.required),
     password: new FormControl('', Validators.required),
   });
+
+  // username = new FormControl('', [Validators.required, Validators.email]);
 
   constructor(private loginServices: LoginService, private router: Router) {}
 
@@ -24,6 +27,14 @@ export class LoginComponent implements OnInit {
       console.error(err);
     });
   }
+
+  // getErrorMessage() {
+  //   if (this.username.hasError('required')) {
+  //     return 'You must enter a value';
+  //   }
+  //
+  //   return this.username.hasError('username') ? 'Not a valid username' : '';
+  // }
 
   onSubmit() {
     const loginCredentials = {

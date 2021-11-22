@@ -24,7 +24,7 @@ export class AddBookComponent implements OnInit {
 
   constructor(private uiService: UiService) {
     this.subscription = this.uiService
-      .onToggle()
+      .onToggleAdd()
       .subscribe((value) => (this.showAddBook = value));
   }
 
@@ -48,6 +48,8 @@ export class AddBookComponent implements OnInit {
     bookFormData.append('title', book.title);
     bookFormData.append('author', book.author);
     bookFormData.append('image', book.image);
+
+    this.uiService.toggleAddTask();
 
     this.onAddBook.emit(bookFormData);
     this.form.reset();

@@ -1,43 +1,29 @@
 <header>
-  <h1>Log in</h1>
+  <h1 style="text-align: center">Log in</h1>
 </header>
 
-<form novalidate [formGroup]="form" class="add-form">
-  <div class="form-control">
-    <label for="username">Username : </label>
-    <input
-      type="text"
-      name="username"
-      formControlName="username"
-      id="username"
-      placeholder="Enter your username"
-    />
-  </div>
-  <div class="form-control">
-    <label for="password">Password : </label>
-    <input
-      type="password"
-      name="password"
-      formControlName="password"
-      id="password"
-      placeholder="Enter your password"
-    />
-  </div>
-  <button
-    type="submit"
-    (click)="onSubmit()"
-    style="background-color: green "
-    value="connect"
-    class="btn btn-block"
-  >
-    Connect
+<form novalidate class="login-form" [formGroup]="form">
+  <mat-form-field appearance="outline">
+    <mat-label>Enter your username</mat-label>
+    <input matInput formControlName="username" required>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Enter your password</mat-label>
+    <input matInput formControlName="password" [type]="hide ? 'password' : 'text'">
+    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="hide">
+      <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+    </button>
+
+  </mat-form-field>
+
+  <button mat-raised-button type="submit"
+          (click)="onSubmit()" color="primary">Connect
   </button>
   <div class="or">OR</div>
-  <button
-    (click)="onSignup()"
-    value="signup"
-    class="btn btn-block signup"
-  >
-    Signup
+
+  <button mat-stroked-button type="submit"
+          (click)="onSignup()" color="primary">SignUp
   </button>
 </form>
