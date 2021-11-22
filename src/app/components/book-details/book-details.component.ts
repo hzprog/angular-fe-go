@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Book } from 'src/app/Book';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { BookService } from '../../services/books.service';
+import { UiService } from '../../services/ui.service';
 
 @Component({
   selector: 'app-book-details',
@@ -16,7 +17,9 @@ export class BookDetailsComponent implements OnInit {
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private booksService: BookService
+    private uiService: UiService,
+    private booksService: BookService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -24,12 +27,20 @@ export class BookDetailsComponent implements OnInit {
     this.getBook();
   }
 
-  test(book: any) {
-    // console.log(book);
+  updateUi(book: any) {
     this.book = book;
   }
 
   getBook() {
     this.booksService.getBook(this.id).subscribe((book) => (this.book = book));
+  }
+
+  goToBooks() {
+    this.router.navigateByUrl('/books').catch((err) => {
+      console.log(err);
+    });
+  }
+  test() {
+    this.uiService.toggleUpdateTask();
   }
 }

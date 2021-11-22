@@ -15,12 +15,13 @@
         <div><b>Author : </b>{{book.author}}</div>
       </div>
       <div class="item-infos-actions">
-        <fa-icon
-          [ngStyle]="{ color: 'red' }"
-          [icon]="faTimes"
-          (click)="onDelete(book)"
-        ></fa-icon>
-        <fa-icon [icon]="faEdit" routerLink="{{book.ID}}"></fa-icon>
+          <fa-icon
+            class="item-infos-actions-icons"
+            [ngStyle]="{ color: 'red' }"
+            [icon]="faTimes"
+            (click)="onDelete(book)"
+          ></fa-icon>
+        <fa-icon class="item-infos-actions-icons" [icon]="faEdit" routerLink="{{book.ID}}"></fa-icon>
       </div>
     </div>
   </div>

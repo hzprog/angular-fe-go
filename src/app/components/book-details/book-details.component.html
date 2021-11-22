@@ -1,6 +1,6 @@
 <div *ngIf="book">
   <app-header title="Detail of book id : {{book.ID}}" textOfButton="Update Book"></app-header>
-  <app-update-book [book]="book" (onUpdate)="test($event)"></app-update-book>
+  <app-update-book [book]="book" (onUpdate)="updateUi($event)"></app-update-book>
   <div class="book-details-container">
     <img class="book-details-image-container" src="http://localhost:8000/{{ book.image }}" alt="">
 
@@ -15,8 +15,10 @@
       </div>
       <div>
         <div><b>Author :</b></div>
-        <span>{{book.author}}</span></div>
+        <div>{{book.author}}</div>
+      </div>
     </div>
+    <button class="btn" style="background-color: #0074CC" (click)="goToBooks()">Go to all books</button>
   </div>
 
 </div>

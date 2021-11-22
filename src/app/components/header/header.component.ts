@@ -33,7 +33,7 @@ export class HeaderComponent implements OnInit {
     this.userConnected = decodedToken.client;
   }
 
-  toggleAddTask() {
+  toggle() {
     this.uiService.toggleAddTask();
   }
 

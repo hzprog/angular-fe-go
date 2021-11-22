@@ -1,0 +1,44 @@
+<header>
+  <h1>Sign up</h1>
+</header>
+
+<form novalidate [formGroup]="form" class="add-form">
+  <div class="form-control">
+    <label for="username">Username : </label>
+    <input
+      type="text"
+      name="username"
+      formControlName="username"
+      id="username"
+      placeholder="Enter your username"
+    />
+  </div>
+  <div class="form-control">
+    <label for="password">Password : </label>
+    <input
+      type="password"
+      name="password"
+      formControlName="password"
+      id="password"
+      placeholder="Enter your password"
+    />
+  </div>
+  <button
+    type="submit"
+    style="background-color: green"
+    value="register"
+    class="btn btn-block"
+    (click)="onRegister()"
+  >
+    Register
+  </button>
+  <div class="or">You have an account?</div>
+  <button
+    value="signup"
+    (click)="onSignIn()"
+    class="btn btn-block signup"
+  >
+    Sign in
+  </button>
+</form>
+

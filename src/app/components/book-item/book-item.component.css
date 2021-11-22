@@ -3,7 +3,7 @@
   margin-top: 10px;
   margin-bottom: 10px;
   padding: 10px 20px;
-  cursor: pointer;
+  /*cursor: pointer;*/
   box-shadow: 2px 2px 2px #00000018;
   border-radius: 10px;
 }
@@ -46,6 +46,9 @@
   justify-content: flex-end;
   align-items: center;
   gap: 0.5rem;
+}
+.item-infos-actions-icons {
+  cursor: pointer;
 }
 
 .item-infos-text {
