@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { UiService } from 'src/app/services/ui.service';
 import { Subscription } from 'rxjs';
 import jwt_decode from 'jwt-decode';
@@ -14,6 +14,7 @@ export class HeaderComponent implements OnInit {
   @Input() title: string = 'List of books';
   @Input() textOfButton: string = 'Add book';
   @Input() choiceOfToggle: 'update' | 'add';
+  @Output() btnClick = new EventEmitter();
 
   show: boolean;
   subscription: Subscription;
@@ -40,14 +41,8 @@ export class HeaderComponent implements OnInit {
     this.userConnected = decodedToken.client;
   }
 
-  toggle() {
-    if (this.choiceOfToggle === 'add') {
-      this.uiService.toggleAddTask();
-      this.show = !this.show;
-    } else {
-      this.uiService.toggleUpdateTask();
-      this.show = !this.show;
-    }
+  onBtnClick() {
+    this.btnClick.emit();
   }
 
   signOut() {

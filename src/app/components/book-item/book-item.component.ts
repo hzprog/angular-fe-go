@@ -25,6 +25,7 @@ export class BookItemComponent implements OnInit {
   openDeleteDialogue(book: Book) {
     const dialogRef = this.dialog.open(DialogDeleteComponent, {
       width: '250px',
+      data: { book },
     });
 
     dialogRef.afterClosed().subscribe((result) => {

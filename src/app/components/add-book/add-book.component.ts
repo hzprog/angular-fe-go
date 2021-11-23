@@ -1,8 +1,8 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 // import { Book } from '../../Book';
-import { UiService } from 'src/app/services/ui.service';
 import { Subscription } from 'rxjs';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-add-book',
@@ -22,11 +22,7 @@ export class AddBookComponent implements OnInit {
     author: new FormControl('', Validators.required),
   });
 
-  constructor(private uiService: UiService) {
-    this.subscription = this.uiService
-      .onToggleAdd()
-      .subscribe((value) => (this.showAddBook = value));
-  }
+  constructor(public dialogRef: MatDialogRef<AddBookComponent>) {}
 
   ngOnInit(): void {}
 
@@ -49,9 +45,8 @@ export class AddBookComponent implements OnInit {
     bookFormData.append('author', book.author);
     bookFormData.append('image', book.image);
 
-    this.uiService.toggleAddTask();
+    this.dialogRef.close(bookFormData);
 
-    this.onAddBook.emit(bookFormData);
-    this.form.reset();
+    // this.form.reset();
   }
 }

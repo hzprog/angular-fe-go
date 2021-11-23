@@ -1,44 +1,81 @@
-<div *ngIf="showUpdateBook" class="form-container">
-  <form novalidate [formGroup]="form" class="add-form">
-    <div class="form-control">
-      <label for="title">Book</label>
-      <input
-        type="text"
-        id="title"
-        name="title"
-        formControlName="title"
-        placeholder="Add book"
-      />
-    </div>
-    <div class="form-control">
-      <label for="isbn">Isbn</label>
-      <input
-        type="text"
-        name="isbn"
-        formControlName="isbn"
-        id="isbn"
-        placeholder="Add Isbn"
-      />
-    </div>
-    <div class="form-control">
-      <label for="author">Author</label>
-      <input
-        type="text"
-        name="author"
-        formControlName="author"
-        id="author"
-        placeholder="Add Author name"
-      />
-    </div>
-    <button
-      type="submit"
-      [ngStyle]="{ 'background-color': 'green' }"
-      [disabled]="!form.valid"
-      (click)="onSubmit()"
-      value="Save Book"
-      class="btn btn-block"
-    >
-      SAVE BOOK
-    </button>
-  </form>
+<!--<div  class="form-container">-->
+<!--  <form novalidate [formGroup]="form" class="add-form">-->
+<!--    <div class="form-control">-->
+<!--      <label for="title">Book</label>-->
+<!--      <input-->
+<!--        type="text"-->
+<!--        id="title"-->
+<!--        name="title"-->
+<!--        formControlName="title"-->
+<!--        placeholder="Add book"-->
+<!--      />-->
+<!--    </div>-->
+<!--    <div class="form-control">-->
+<!--      <label for="isbn">Isbn</label>-->
+<!--      <input-->
+<!--        type="text"-->
+<!--        name="isbn"-->
+<!--        formControlName="isbn"-->
+<!--        id="isbn"-->
+<!--        placeholder="Add Isbn"-->
+<!--      />-->
+<!--    </div>-->
+<!--    <div class="form-control">-->
+<!--      <label for="author">Author</label>-->
+<!--      <input-->
+<!--        type="text"-->
+<!--        name="author"-->
+<!--        formControlName="author"-->
+<!--        id="author"-->
+<!--        placeholder="Add Author name"-->
+<!--      />-->
+<!--    </div>-->
+<!--    <button-->
+<!--      type="submit"-->
+<!--      [ngStyle]="{ 'background-color': 'green' }"-->
+<!--      [disabled]="!form.valid"-->
+<!--      (click)="onSubmit()"-->
+<!--      value="Save Book"-->
+<!--      class="btn btn-block"-->
+<!--    >-->
+<!--      SAVE BOOK-->
+<!--    </button>-->
+<!--  </form>-->
+<!--</div>-->
+
+<div mat-dialog-title class="space-between">
+  <span>update the book {{data.book.title}}</span>
+  <mat-icon mat-dialog-close color="warn" style="cursor: pointer">close</mat-icon>
 </div>
+<mat-card>
+  <mat-card-content>
+    <div class="form-container">
+      <form novalidate [formGroup]="form" class="add-form">
+        <mat-form-field appearance="outline">
+          <mat-label>Title</mat-label>
+          <input matInput formControlName="title" placeholder="Enter the title of the book" required>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>isbn</mat-label>
+          <input matInput formControlName="isbn" placeholder="add an isbn for the book" required>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Author</mat-label>
+          <input matInput formControlName="title" placeholder="Enter the Author of the book" required>
+        </mat-form-field>
+
+        <button
+          mat-raised-button
+          color="primary"
+          type="submit"
+          (click)="onSubmit()"
+          value="Save Book"
+        >
+          SAVE BOOK
+        </button>
+      </form>
+    </div>
+  </mat-card-content>
+</mat-card>

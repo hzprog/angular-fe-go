@@ -1,5 +1,5 @@
-<app-header choiceOfToggle="add"></app-header>
-<app-add-book (onAddBook)="addBook($event)"></app-add-book>
+<app-header choiceOfToggle="add" (btnClick)="openAddDialog()"></app-header>
+<!--<app-add-book (onAddBook)="addBook($event)"></app-add-book>-->
 <app-book-item
   *ngFor="let book of books"
   [book]="book"

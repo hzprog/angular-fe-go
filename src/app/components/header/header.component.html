@@ -1,20 +1,23 @@
-<header >
+<header>
   <div>
     <div><b>Connected as : {{ userConnected }}</b></div>
-    <fa-icon
-      [icon]="faSignOOutAlt"
-      transform="grow-12"
-      style="color: red"
-      (click)="signOut()"
-    ></fa-icon>
+    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+      <mat-icon>more_vert</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item (click)="signOut()">
+        <mat-icon color="warn">logout</mat-icon>
+        <span>Log out</span>
+      </button>
+    </mat-menu>
   </div>
   <div class="separator"></div>
   <div>
     <h2>{{ title }}</h2>
     <app-button
-      color="{{ show ? 'red' : 'green' }}"
+      color="green"
       text="{{ show ? 'Close' : textOfButton }}"
-      (btnClick)="toggle()"
+      (btnClick)="onBtnClick()"
     ></app-button>
   </div>
 </header>

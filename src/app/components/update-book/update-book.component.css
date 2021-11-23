@@ -1,14 +1,15 @@
 .add-form {
-  margin-bottom: 40px;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
 }
 
-.form-container {
+.space-between{
   display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 10px;
-  box-shadow: 2px 2px 2px #00000018;
-  margin-bottom: 20px;
+  justify-content:space-between ;
+}
 
-  background: #f4f4f4;
+mat-card-content{
+  width: 400px;
 }

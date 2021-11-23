@@ -1,6 +1,6 @@
 <div *ngIf="book">
-  <app-header title="Detail of book id : {{book.ID}}" textOfButton="Update Book" choiceOfToggle="update"></app-header>
-  <app-update-book [book]="book" (onUpdate)="updateUi($event)"></app-update-book>
+  <app-header title="Book id : {{book.ID}}" textOfButton="Update Book" (btnClick)="openUpdateDialog()"></app-header>
+
   <div class="book-details-container">
     <img class="book-details-image-container" src="http://localhost:8000/{{ book.image }}" alt="">
 
@@ -18,7 +18,7 @@
         <div>{{book.author}}</div>
       </div>
     </div>
-    <button class="btn" style="background-color: #0074CC" (click)="goToBooks()">Go to all books</button>
+    <button class="btn" mat-raised-button style="background-color: #0074CC" (click)="goToBooks()">Go to all books</button>
   </div>
 
 </div>

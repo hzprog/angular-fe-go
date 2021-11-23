@@ -4,6 +4,9 @@ import { Book } from 'src/app/Book';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BookService } from '../../services/books.service';
 import { UiService } from '../../services/ui.service';
+import { AddBookComponent } from '../add-book/add-book.component';
+import { MatDialog } from '@angular/material/dialog';
+import { UpdateBookComponent } from '../update-book/update-book.component';
 
 @Component({
   selector: 'app-book-details',
@@ -14,12 +17,14 @@ export class BookDetailsComponent implements OnInit {
   id: any;
   book: Book;
   hz: Book;
+  formData: any;
 
   constructor(
     private activatedRoute: ActivatedRoute,
     private uiService: UiService,
     private booksService: BookService,
-    private router: Router
+    private router: Router,
+    public dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -40,7 +45,17 @@ export class BookDetailsComponent implements OnInit {
       console.log(err);
     });
   }
-  test() {
-    this.uiService.toggleUpdateTask();
+
+  openUpdateDialog() {
+    const dialogRef = this.dialog.open(UpdateBookComponent, {
+      data: {
+        book: this.book,
+        formData: this.formData,
+      },
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) this.updateUi(result);
+    });
   }
 }

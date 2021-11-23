@@ -1,8 +1,16 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { UiService } from '../../services/ui.service';
+import {
+  Component,
+  EventEmitter,
+  Inject,
+  Input,
+  OnInit,
+  Output,
+} from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Book } from '../../Book';
 import { BookService } from '../../services/books.service';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { BookDetailsComponent } from '../book-details/book-details.component';
 
 @Component({
   selector: 'app-update-book',
@@ -14,25 +22,21 @@ export class UpdateBookComponent implements OnInit {
   @Output() outputBook: Book;
   @Output() onUpdate = new EventEmitter<Book>();
 
-  showUpdateBook: boolean;
-
   form: FormGroup;
 
   constructor(
-    private uiService: UiService,
-    private bookServices: BookService
+    private bookServices: BookService,
+    public dialogRef: MatDialogRef<BookDetailsComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any
   ) {}
 
   ngOnInit(): void {
-    this.uiService
-      .onToggleUpdate()
-      .subscribe((value) => (this.showUpdateBook = value));
-
-    this.form = new FormGroup({
-      title: new FormControl(this.book.title, Validators.required),
-      isbn: new FormControl(this.book.isbn, Validators.required),
-      author: new FormControl(this.book.author, Validators.required),
-    });
+    if (this.data.book)
+      this.form = new FormGroup({
+        title: new FormControl(this.data.book.title, Validators.required),
+        isbn: new FormControl(this.data.book.isbn, Validators.required),
+        author: new FormControl(this.data.book.author, Validators.required),
+      });
   }
 
   onSubmit() {
@@ -42,10 +46,8 @@ export class UpdateBookComponent implements OnInit {
       author: this.form.get('author')?.value,
     };
 
-    this.bookServices.updateBook(book, this.book.ID).subscribe((book) => {
-      this.onUpdate.emit(book);
+    this.bookServices.updateBook(book, this.data.book.ID).subscribe((book) => {
+      this.dialogRef.close(book);
     });
-
-    this.uiService.toggleUpdateTask();
   }
 }

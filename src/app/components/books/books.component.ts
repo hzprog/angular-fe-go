@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { BookService } from 'src/app/services/books.service';
 import { Book } from '../../Book';
+import { MatDialog } from '@angular/material/dialog';
+import { AddBookComponent } from '../add-book/add-book.component';
 
 @Component({
   selector: 'app-books',
@@ -9,9 +11,14 @@ import { Book } from '../../Book';
 })
 export class BooksComponent implements OnInit {
   books: Book[] = [];
-  constructor(private bookService: BookService) {}
+  formData: FormData;
+  constructor(private bookService: BookService, public dialog: MatDialog) {}
 
   ngOnInit(): void {
+    this.getBooks();
+  }
+
+  getBooks() {
     this.bookService.getBooks().subscribe((books) => (this.books = books));
   }
 
@@ -23,5 +30,17 @@ export class BooksComponent implements OnInit {
 
   addBook(book: FormData) {
     this.bookService.addBook(book).subscribe((book) => this.books.push(book));
+  }
+
+  openAddDialog() {
+    const dialogRef = this.dialog.open(AddBookComponent, {
+      data: {
+        formData: this.formData,
+      },
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) this.addBook(result);
+    });
   }
 }
