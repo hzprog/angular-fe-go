@@ -22,14 +22,11 @@ export class BookItemComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  // onDelete(book: Book) {
-  //   this.onDeleteBook.emit(book);
-  // }
-
   openDeleteDialogue(book: Book) {
     const dialogRef = this.dialog.open(DialogDeleteComponent, {
       width: '250px',
     });
+
     dialogRef.afterClosed().subscribe((result) => {
       if (result === 'true') this.onDeleteBook.emit(book);
     });

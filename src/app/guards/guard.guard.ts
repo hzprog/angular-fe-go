@@ -6,7 +6,7 @@ import {
   UrlTree,
 } from '@angular/router';
 import { Router } from '@angular/router';
-import { AuthguardServiceService } from './services/authguard-service.service';
+import { AuthguardServiceService } from '../services/authguard-service.service';
 import { Observable } from 'rxjs';
 
 @Injectable({

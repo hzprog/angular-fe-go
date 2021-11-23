@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './components/login/login.component';
-import { GuardGuard } from './guard.guard';
+import { GuardGuard } from './guards/guard.guard';
 import { RegisterComponent } from './components/register/register.component';
 import { BooksComponent } from './components/books/books.component';
-import { AuthenticationGuard } from './authentication.guard';
+import { AuthenticationGuard } from './guards/authentication.guard';
 import { BookDetailsComponent } from './components/book-details/book-details.component';
 
 const routes: Routes = [
