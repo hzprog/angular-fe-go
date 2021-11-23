@@ -18,6 +18,7 @@ import { UpdateBookComponent } from './components/update-book/update-book.compon
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.module';
 import { AppRoutingModule } from './app-routing.module';
+import { DialogDeleteComponent } from './components/dialog-delete/dialog-delete.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { AppRoutingModule } from './app-routing.module';
     BookDetailsComponent,
     RegisterComponent,
     UpdateBookComponent,
+    DialogDeleteComponent,
   ],
   imports: [
     BrowserModule,

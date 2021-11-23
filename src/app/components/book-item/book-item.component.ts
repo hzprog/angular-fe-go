@@ -3,6 +3,8 @@ import { Book } from '../../Book';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { faEdit } from '@fortawesome/free-solid-svg-icons';
 import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogDeleteComponent } from '../dialog-delete/dialog-delete.component';
 
 @Component({
   selector: 'app-book-item',
@@ -16,12 +18,21 @@ export class BookItemComponent implements OnInit {
   faTimes = faTimes;
   faEdit = faEdit;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, public dialog: MatDialog) {}
 
   ngOnInit(): void {}
 
-  onDelete(book: Book) {
-    this.onDeleteBook.emit(book);
+  // onDelete(book: Book) {
+  //   this.onDeleteBook.emit(book);
+  // }
+
+  openDeleteDialogue(book: Book) {
+    const dialogRef = this.dialog.open(DialogDeleteComponent, {
+      width: '250px',
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result === 'true') this.onDeleteBook.emit(book);
+    });
   }
 
   onEdit(id: any) {
