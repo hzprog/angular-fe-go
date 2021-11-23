@@ -6,8 +6,6 @@ import { RegisterComponent } from './components/register/register.component';
 import { BooksComponent } from './components/books/books.component';
 import { AuthenticationGuard } from './authentication.guard';
 import { BookDetailsComponent } from './components/book-details/book-details.component';
-import { BrowserModule } from '@angular/platform-browser';
-import { AppComponent } from './app.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
