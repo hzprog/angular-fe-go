@@ -1,0 +1,37 @@
+.space-between {
+  display: flex;
+  justify-content: space-between;
+}
+
+.page-container{
+  margin: 50px;
+}
+
+button {
+  padding: 5px;
+  width: 125px;
+}
+
+table {
+  margin-top: 1rem;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+
+mat-paginator {
+  margin-top: 1rem;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+
+a {
+  color: #0074CC;
+  text-decoration: none;
+}
+.add-button {
+  padding: 5px;
+  width: 125px;
+}
+

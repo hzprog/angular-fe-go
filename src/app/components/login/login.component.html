@@ -1,29 +1,31 @@
-<header>
-  <h1 style="text-align: center">Log in</h1>
-</header>
+<div class="container">
+  <header>
+    <h1 style="text-align: center">Log in</h1>
+  </header>
 
-<form novalidate class="login-form" [formGroup]="form">
-  <mat-form-field appearance="outline">
-    <mat-label>Enter your username</mat-label>
-    <input matInput formControlName="username" required>
-  </mat-form-field>
+  <form novalidate class="login-form" [formGroup]="form">
+    <mat-form-field appearance="outline">
+      <mat-label>Enter your username</mat-label>
+      <input matInput formControlName="username" required>
+    </mat-form-field>
 
-  <mat-form-field appearance="outline">
-    <mat-label>Enter your password</mat-label>
-    <input matInput formControlName="password" [type]="hide ? 'password' : 'text'">
-    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
-            [attr.aria-pressed]="hide">
-      <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+    <mat-form-field appearance="outline">
+      <mat-label>Enter your password</mat-label>
+      <input matInput formControlName="password" [type]="hide ? 'password' : 'text'">
+      <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+              [attr.aria-pressed]="hide">
+        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+      </button>
+
+    </mat-form-field>
+
+    <button mat-raised-button type="submit"
+            (click)="onSubmit()" color="primary">Connect
     </button>
+    <div class="or">OR</div>
 
-  </mat-form-field>
-
-  <button mat-raised-button type="submit"
-          (click)="onSubmit()" color="primary">Connect
-  </button>
-  <div class="or">OR</div>
-
-  <button mat-stroked-button type="submit"
-          (click)="onSignup()" color="primary">Sign Up
-  </button>
-</form>
+    <button mat-stroked-button type="submit"
+            (click)="onSignup()" color="primary">Sign Up
+    </button>
+  </form>
+</div>

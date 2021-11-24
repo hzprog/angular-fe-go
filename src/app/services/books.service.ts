@@ -30,8 +30,8 @@ export class BookService {
     ),
   };
 
-  getBooks(): Observable<Book[]> {
-    const url = `${this.apiUrl}/10`;
+  getBooks(limit: number, id: number): Observable<any> {
+    const url = `${this.apiUrl}/${limit}`;
     return this.http.get<Book[]>(url, this.httpOptions);
   }
 
