@@ -8,12 +8,7 @@ import { DialogDeleteComponent } from '../dialog-delete/dialog-delete.component'
 import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { DialogImageComponent } from '../dialog-image/dialog-image.component';
-import { MatSort, Sort } from '@angular/material/sort';
 import { LiveAnnouncer } from '@angular/cdk/a11y';
-
-function compare(a: number | string, b: number | string, isAsc: boolean) {
-  return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
-}
 
 @Component({
   selector: 'app-books',
