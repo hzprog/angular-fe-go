@@ -11,7 +11,6 @@ import { Form } from '@angular/forms';
 })
 export class BookService {
   private apiUrl = 'http://localhost:8000/api/books';
-  private apiRoute = 'http://localhost:8000/api/book/';
 
   constructor(
     private http: HttpClient,
@@ -30,8 +29,8 @@ export class BookService {
     ),
   };
 
-  getBooks(limit: number, id: number): Observable<any> {
-    const url = `${this.apiUrl}/${limit}`;
+  getBooks(limit: number, offset: number): Observable<any> {
+    const url = `${this.apiUrl}?limit=${limit}&offset=${offset}`;
     return this.http.get<Book[]>(url, this.httpOptions);
   }
 
@@ -50,7 +49,7 @@ export class BookService {
   }
 
   getBook(bookId: any): Observable<Book> {
-    const url = `${this.apiRoute + bookId}`;
+    const url = `${this.apiUrl}/${bookId}`;
     return this.http.get<any>(url, this.httpOptionsPost);
   }
 }
