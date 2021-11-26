@@ -7,6 +7,13 @@ import { AuthguardServiceService } from '../../services/authguard-service.servic
 import { DialogDeleteComponent } from '../dialog-delete/dialog-delete.component';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
+import { DialogImageComponent } from '../dialog-image/dialog-image.component';
+import { MatSort, Sort } from '@angular/material/sort';
+import { LiveAnnouncer } from '@angular/cdk/a11y';
+
+function compare(a: number | string, b: number | string, isAsc: boolean) {
+  return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
+}
 
 @Component({
   selector: 'app-books',
@@ -14,48 +21,68 @@ import { MatPaginator } from '@angular/material/paginator';
   styleUrls: ['./books.component.css'],
 })
 export class BooksComponent implements OnInit {
-  displayedColumns: string[] = ['ID', 'title', 'isbn', 'image', 'actions'];
+  displayedColumns: string[] = [
+    'ID',
+    'title',
+    'isbn',
+    'author',
+    'image',
+    'actions',
+  ];
+
   @ViewChild(MatTable) table: MatTable<Book>;
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  books: MatTableDataSource<Book>;
+  dataSource: MatTableDataSource<Book[]>;
+  books: Book[];
   lengthOfBooks: number = 500;
   pageSize: number = 5;
   formData: FormData;
+  pageIndex: number = 0;
 
   constructor(
     private bookService: BookService,
     public dialog: MatDialog,
-    private authGuard: AuthguardServiceService
+    private authGuard: AuthguardServiceService,
+    private _liveAnnouncer: LiveAnnouncer
   ) {}
 
   ngOnInit(): void {
-    this.getBooks();
-    this.books.paginator = this.paginator;
+    this.getBooks(this.pageSize, 0);
   }
 
-  ngAfterViewInit() {
-    // this.books.paginator?.page.subscribe(() => console.log('working'));
-  }
-
-  getBooks() {
-    this.bookService.getBooks(this.pageSize, 0).subscribe((result) => {
+  getBooks(limit: any, offset: any) {
+    this.bookService.getBooks(limit, offset).subscribe((result) => {
       this.books = result.books;
       this.lengthOfBooks = result.total;
-      this.table.renderRows();
+
+      this.dataSource = new MatTableDataSource<any>(this.books);
+      this.dataSource.paginator = this.paginator;
+    });
+  }
+
+  getNextBooks(limit: any, offset: any) {
+    this.bookService.getBooks(limit, offset).subscribe((result) => {
+      this.books = result.books;
+
+      this.books = result.books;
+
+      this.dataSource = new MatTableDataSource<any>(this.books);
     });
   }
 
   deleteBook(book: Book) {
     this.bookService.deleteBook(book).subscribe(() => {
-      this.books.data = this.books.data.filter((b) => b.ID !== book.ID);
+      this.books = this.books.filter((b) => b.ID !== book.ID);
+      this.dataSource = new MatTableDataSource<any>(this.books);
     });
   }
 
   addBook(book: FormData) {
     this.bookService.addBook(book).subscribe((book) => {
-      this.books.data.push(book);
-      this.table.renderRows();
+      this.books.push(book);
+      this.dataSource = new MatTableDataSource<any>(this.books);
+      this.lengthOfBooks++;
     });
   }
 
@@ -63,6 +90,18 @@ export class BooksComponent implements OnInit {
     const dialogRef = this.dialog.open(AddBookComponent, {
       data: {
         formData: this.formData,
+      },
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) this.addBook(result);
+    });
+  }
+
+  openImageDialog(image: string) {
+    const dialogRef = this.dialog.open(DialogImageComponent, {
+      data: {
+        url: image,
       },
     });
 
@@ -84,5 +123,13 @@ export class BooksComponent implements OnInit {
 
   signOut() {
     this.authGuard.signOut();
+  }
+
+  pageChanged(event: any) {
+    this.pageSize = event.pageSize;
+    this.pageIndex = event.pageIndex;
+    let offset = this.pageSize * this.pageIndex;
+
+    this.getNextBooks(this.pageSize, offset);
   }
 }

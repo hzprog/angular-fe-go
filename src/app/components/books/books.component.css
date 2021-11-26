@@ -13,16 +13,10 @@ button {
 }
 
 table {
-  margin-top: 1rem;
-  margin-left: auto;
-  margin-right: auto;
   width: 100%;
 }
 
 mat-paginator {
-  margin-top: 1rem;
-  margin-left: auto;
-  margin-right: auto;
   width: 100%;
 }
 
@@ -30,8 +24,16 @@ a {
   color: #0074CC;
   text-decoration: none;
 }
+
 .add-button {
   padding: 5px;
   width: 125px;
+}
+
+.table-container{
+  margin-top: 1rem;
+  margin-left: auto;
+  margin-right: auto;
+  width: 80%;
 }
 
