@@ -19,6 +19,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.module';
 import { AppRoutingModule } from './app-routing.module';
 import { DialogDeleteComponent } from './components/dialog-delete/dialog-delete.component';
+import { DialogImageComponent } from './components/dialog-image/dialog-image.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { DialogDeleteComponent } from './components/dialog-delete/dialog-delete.
     RegisterComponent,
     UpdateBookComponent,
     DialogDeleteComponent,
+    DialogImageComponent,
   ],
   imports: [
     BrowserModule,
@@ -46,5 +48,10 @@ import { DialogDeleteComponent } from './components/dialog-delete/dialog-delete.
   ],
   providers: [AuthguardServiceService],
   bootstrap: [AppComponent],
+  entryComponents: [
+    AddBookComponent,
+    DialogDeleteComponent,
+    DialogImageComponent,
+  ],
 })
 export class AppModule {}
