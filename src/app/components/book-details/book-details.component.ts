@@ -32,12 +32,14 @@ export class BookDetailsComponent implements OnInit {
     this.getBook();
   }
 
-  updateUi(book: any) {
-    this.book = book;
+  updateUi(result: any) {
+    this.book = result.data.book;
   }
 
   getBook() {
-    this.booksService.getBook(this.id).subscribe((book) => (this.book = book));
+    this.booksService
+      .getBook(this.id)
+      .subscribe((book) => (this.book = book.data.book));
   }
 
   goToBooks() {

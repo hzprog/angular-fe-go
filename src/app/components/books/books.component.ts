@@ -48,8 +48,8 @@ export class BooksComponent implements OnInit {
 
   getBooks(limit: any, offset: any) {
     this.bookService.getBooks(limit, offset).subscribe((result) => {
-      this.books = result.books;
-      this.lengthOfBooks = result.total;
+      this.books = result.data.books;
+      this.lengthOfBooks = result.data.total;
 
       this.dataSource = new MatTableDataSource<any>(this.books);
       this.dataSource.paginator = this.paginator;
@@ -58,9 +58,7 @@ export class BooksComponent implements OnInit {
 
   getNextBooks(limit: any, offset: any) {
     this.bookService.getBooks(limit, offset).subscribe((result) => {
-      this.books = result.books;
-
-      this.books = result.books;
+      this.books = result.data.books;
 
       this.dataSource = new MatTableDataSource<any>(this.books);
     });
@@ -74,8 +72,8 @@ export class BooksComponent implements OnInit {
   }
 
   addBook(book: FormData) {
-    this.bookService.addBook(book).subscribe((book) => {
-      this.books.push(book);
+    this.bookService.addBook(book).subscribe((result) => {
+      this.books.push(result.data.book);
       this.dataSource = new MatTableDataSource<any>(this.books);
       this.lengthOfBooks++;
     });

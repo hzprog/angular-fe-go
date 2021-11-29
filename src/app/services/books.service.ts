@@ -4,7 +4,6 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AuthguardServiceService } from './authguard-service.service';
 
 import { Book } from '../Book';
-import { Form } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root',
@@ -20,12 +19,12 @@ export class BookService {
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
-    }).set('Authorization', `Bearer ${localStorage.getItem('token')}`),
+    }).set('Authorization', `${localStorage.getItem('token')}`),
   };
   httpOptionsPost = {
     headers: new HttpHeaders().set(
       'Authorization',
-      `Bearer ${localStorage.getItem('token')}`
+      `${localStorage.getItem('token')}`
     ),
   };
 
@@ -39,7 +38,7 @@ export class BookService {
     return this.http.delete<string>(url, this.httpOptions);
   }
 
-  addBook(bookFromData: FormData): Observable<Book> {
+  addBook(bookFromData: FormData): Observable<any> {
     return this.http.post<any>(this.apiUrl, bookFromData, this.httpOptionsPost);
   }
 
@@ -48,7 +47,7 @@ export class BookService {
     return this.http.put<any>(url, bookData, this.httpOptionsPost);
   }
 
-  getBook(bookId: any): Observable<Book> {
+  getBook(bookId: any): Observable<any> {
     const url = `${this.apiUrl}/${bookId}`;
     return this.http.get<any>(url, this.httpOptionsPost);
   }

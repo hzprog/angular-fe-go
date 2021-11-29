@@ -44,13 +44,13 @@ export class LoginComponent implements OnInit {
 
     this.loginServices.login(loginCredentials).subscribe(
       (result) => {
-        localStorage.setItem('token', result.token);
+        localStorage.setItem('token', result.data);
         this.router.navigateByUrl('/books').catch((err) => {
           console.error(err);
         });
       },
-      (err: HttpErrorResponse) => {
-        alert(err.error);
+      (err: any) => {
+        alert(err.error.error.message);
       }
     );
   }

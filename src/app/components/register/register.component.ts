@@ -28,14 +28,13 @@ export class RegisterComponent implements OnInit {
 
     this.loginServices.register(registerCredentials).subscribe({
       next: (result) => {
-        localStorage.setItem('token', result.token);
-        console.log(result.token);
+        localStorage.setItem('token', result.data);
         this.router.navigateByUrl('/books').catch((err) => {
           console.error(err);
         });
       },
       error: (err: HttpErrorResponse) => {
-        alert(err.error);
+        alert(err.error.error.message);
       },
     });
   }

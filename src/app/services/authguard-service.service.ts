@@ -8,7 +8,7 @@ import jwt_decode from 'jwt-decode';
 export class AuthguardServiceService {
   constructor(private router: Router) {}
   getToken() {
-    let token: string | null = localStorage.getItem('token');
+    let token: string = localStorage.getItem('token')!;
     let pass: boolean = false;
 
     if (token) {
