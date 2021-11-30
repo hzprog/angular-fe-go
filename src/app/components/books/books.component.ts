@@ -73,9 +73,13 @@ export class BooksComponent implements OnInit {
 
   addBook(book: FormData) {
     this.bookService.addBook(book).subscribe((result) => {
-      this.books.push(result.data.book);
-      this.dataSource = new MatTableDataSource<any>(this.books);
-      this.lengthOfBooks++;
+      if (this.pageSize > this.books.length) {
+        this.books.push(result.data.book);
+        this.dataSource = new MatTableDataSource<any>(this.books);
+        this.lengthOfBooks++;
+        return;
+      }
+      alert('books saved successfully');
     });
   }
 
